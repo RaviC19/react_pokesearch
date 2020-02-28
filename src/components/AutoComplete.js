@@ -5,10 +5,10 @@ function AutoComplete({ searchPoke, handleSelect }) {
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
-    fetch(`http://192.168.0.75:5000/pokemon?search=${searchPoke}`)
+    fetch(`http://localhost:5000/pokemon?name=${searchPoke}`)
       .then(res => res.json())
-      .then(({ payload }) => {
-        setOptions(payload);
+      .then(data => {
+        setOptions(data);
       });
   }, [searchPoke]);
 
@@ -17,7 +17,7 @@ function AutoComplete({ searchPoke, handleSelect }) {
       {options.map(item => {
         return (
           <li key={item.name} onClick={() => handleSelect(item.name)}>
-            {item.name} <img src={item.img_url} />
+            {item.name} <img src={item.img_url} alt={item.name} />
           </li>
         );
       })}
