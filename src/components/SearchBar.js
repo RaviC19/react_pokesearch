@@ -1,32 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 export default SearchBar;
 
-function SearchBar({ addToPoke }) {
-  const [input, setInput] = useState("");
-
-  function handleChange(event) {
-    setInput(event.target.value);
-  }
-
-  function resetInput() {
-    setInput("");
-  }
-
+function SearchBar({ searchPoke, handleChange }) {
   return (
     <div className="input">
-      <form
-        onSubmit={event => {
-          event.preventDefault();
-          resetInput();
-        }}
-      >
-        <input
-          type="text"
-          value={input}
-          onChange={handleChange}
-          placeholder="Search for Pokemon"
-        />
-      </form>
+      <input
+        type="text"
+        value={searchPoke}
+        onChange={handleChange}
+        placeholder="Search for Pokemon"
+      />
     </div>
   );
 }

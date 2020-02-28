@@ -1,24 +1,25 @@
 import React, { useState } from "react";
 import "./App.css";
 import SearchBar from "./SearchBar";
-
-const data = [
-  { id: 1, name: "Bulbasaur", description: "Green mofo" },
-  { id: 2, name: "Charizard", description: "Red mofo" },
-  { id: 3, name: "Squirtle", description: "Blue mofo" }
-];
+import AutoComplete from "./AutoComplete";
 
 function App() {
   const [searchPoke, setSearchPoke] = useState("");
+  //const [result, setResult] = useState({name: null});
 
   function handleChange(event) {
-    searchPoke(event.target.value);
+    setSearchPoke(event.target.value);
+  }
+
+  function handleSelect(item) {
+    setSearchPoke(item);
   }
 
   return (
     <div className="App">
       <h1 className="h1">PokeSearch</h1>
-      <SearchBar addToPoke={addToPoke} />
+      <SearchBar searchPoke={searchPoke} handleChange={handleChange} />
+      <AutoComplete searchPoke={searchPoke} handleSelect={handleSelect} />
     </div>
   );
 }
